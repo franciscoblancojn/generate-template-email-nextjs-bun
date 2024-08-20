@@ -4,7 +4,9 @@ exports.generate = void 0;
 const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importDefault(require("react"));
 const server_1 = require("react-dom/server");
-const Bun = require('bun');
+// eslint-disable-next-line
+// @ts-expect-error
+const bun_1 = tslib_1.__importDefault(require("bun"));
 const generateColorTerminal = (n) => `\x1b[${n}m%s\x1b[0m`;
 const COLORS = {
     Reset: generateColorTerminal(0),
@@ -51,7 +53,7 @@ const parseHTMLFunction = (HTML) => {
 const generate = async () => {
     console.log(COLORS.BgGreen, '------ INIT GENERATE -----');
     console.log('');
-    const glob = new Bun.Glob('**/*.tsx');
+    const glob = new bun_1.default.Glob('**/*.tsx');
     const pathList = [];
     for await (const path of glob.scan('./src/pages')) {
         if (`${path}`.split('/').at(-1) == 'index.tsx' && path != 'index.tsx') {
@@ -71,11 +73,11 @@ const generate = async () => {
         const HTML = (0, server_1.renderToStaticMarkup)(react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement(COMPONENT.default, null)));
         console.log(COLORS.FgYellow, `\t(3/4)`, COLORS.FgMagenta, ` - CREATE TEMPLATE [${path}]`);
-        await Bun.write(RUTE_HTML, `${HTML}`, {
+        await bun_1.default.write(RUTE_HTML, `${HTML}`, {
             createDirs: true,
         });
         console.log(COLORS.FgYellow, `\t(4/4)`, COLORS.FgMagenta, ` - CREATE FUNCTION [${path}]`);
-        await Bun.write(RUTE_FUNCTION, parseHTMLFunction(HTML), {
+        await bun_1.default.write(RUTE_FUNCTION, parseHTMLFunction(HTML), {
             createDirs: true,
         });
         console.log(COLORS.FgCyan, `  (${i + 1}/${pathListN}) FINISH CREATE TEMPLATE FOR [${path}]`);

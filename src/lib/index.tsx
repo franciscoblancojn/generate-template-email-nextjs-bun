@@ -1,6 +1,8 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-const Bun = require('bun');
+// eslint-disable-next-line
+// @ts-expect-error
+import Bun from 'bun';
 
 const generateColorTerminal = (n: number) => `\x1b[${n}m%s\x1b[0m`;
 
