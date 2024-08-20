@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import write from 'write';
 import listPaths from 'list-paths';
+import PATH from 'path';
 
 const generateColorTerminal = (n: number) => `\x1b[${n}m%s\x1b[0m`;
 
@@ -77,7 +78,7 @@ export const generate = async () => {
             `  (${i + 1}/${pathListN}) CREATE TEMPLATE FOR [${path}]`,
         );
 
-        const RUTE = `${path}`;
+        const RUTE = PATH.resolve(process.cwd(), path);
 
         const RUTE_HTML = RUTE.replace('index.tsx', 'template.html');
         const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.tsx');

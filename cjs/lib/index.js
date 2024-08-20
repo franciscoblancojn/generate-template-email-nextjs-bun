@@ -6,6 +6,7 @@ const react_1 = tslib_1.__importDefault(require("react"));
 const server_1 = require("react-dom/server");
 const write_1 = tslib_1.__importDefault(require("write"));
 const list_paths_1 = tslib_1.__importDefault(require("list-paths"));
+const path_1 = tslib_1.__importDefault(require("path"));
 const generateColorTerminal = (n) => `\x1b[${n}m%s\x1b[0m`;
 const COLORS = {
     Reset: generateColorTerminal(0),
@@ -60,7 +61,7 @@ const generate = async () => {
     for (let i = 0; i < pathList.length; i++) {
         const path = pathList[i];
         console.log(COLORS.FgGreen, `  (${i + 1}/${pathListN}) CREATE TEMPLATE FOR [${path}]`);
-        const RUTE = `${path}`;
+        const RUTE = path_1.default.resolve(process.cwd(), path);
         const RUTE_HTML = RUTE.replace('index.tsx', 'template.html');
         const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.tsx');
         console.log(COLORS.FgYellow, `\t(1/4)`, COLORS.FgMagenta, ` - IMPORT COMPONENT [${path}]`);
