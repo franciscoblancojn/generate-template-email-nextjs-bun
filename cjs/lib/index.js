@@ -4,7 +4,8 @@ exports.generate = void 0;
 const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importDefault(require("react"));
 const server_1 = require("react-dom/server");
-const bun_1 = tslib_1.__importDefault(require("bun"));
+const write_1 = tslib_1.__importDefault(require("write"));
+const list_paths_1 = tslib_1.__importDefault(require("list-paths"));
 const generateColorTerminal = (n) => `\x1b[${n}m%s\x1b[0m`;
 const COLORS = {
     Reset: generateColorTerminal(0),
@@ -51,18 +52,15 @@ const parseHTMLFunction = (HTML) => {
 const generate = async () => {
     console.log(COLORS.BgGreen, '------ INIT GENERATE -----');
     console.log('');
-    const glob = new bun_1.default.Glob('**/*.tsx');
-    const pathList = [];
-    for await (const path of glob.scan('./src/pages')) {
-        if (`${path}`.split('/').at(-1) == 'index.tsx' && path != 'index.tsx') {
-            pathList.push(path);
-        }
-    }
+    const FOLDER = './src/pages';
+    const pathList = (0, list_paths_1.default)(FOLDER, {
+        includeFiles: true,
+    }).filter((e) => e.split('/').at(-1) == 'index.tsx' && e != FOLDER + '/index.tsx');
     const pathListN = pathList.length;
     for (let i = 0; i < pathList.length; i++) {
         const path = pathList[i];
         console.log(COLORS.FgGreen, `  (${i + 1}/${pathListN}) CREATE TEMPLATE FOR [${path}]`);
-        const RUTE = `./src/pages/${path}`;
+        const RUTE = `${path}`;
         const RUTE_HTML = RUTE.replace('index.tsx', 'template.html');
         const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.tsx');
         console.log(COLORS.FgYellow, `\t(1/4)`, COLORS.FgMagenta, ` - IMPORT COMPONENT [${path}]`);
@@ -71,12 +69,12 @@ const generate = async () => {
         const HTML = (0, server_1.renderToStaticMarkup)(react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement(COMPONENT.default, null)));
         console.log(COLORS.FgYellow, `\t(3/4)`, COLORS.FgMagenta, ` - CREATE TEMPLATE [${path}]`);
-        await bun_1.default.write(RUTE_HTML, `${HTML}`, {
-            createPath: true,
+        write_1.default.sync(RUTE_HTML, `${HTML}`, {
+            overwrite: true,
         });
         console.log(COLORS.FgYellow, `\t(4/4)`, COLORS.FgMagenta, ` - CREATE FUNCTION [${path}]`);
-        await bun_1.default.write(RUTE_FUNCTION, parseHTMLFunction(HTML), {
-            createPath: true,
+        write_1.default.sync(RUTE_FUNCTION, parseHTMLFunction(HTML), {
+            overwrite: true,
         });
         console.log(COLORS.FgCyan, `  (${i + 1}/${pathListN}) FINISH CREATE TEMPLATE FOR [${path}]`);
         console.log('');
