@@ -4,7 +4,7 @@ import write from 'write';
 import listPaths from 'list-paths';
 import PATH from 'path';
 
-const generateColorTerminal = (n: number) => `\x1b[${n}m%s\x1b[0m`;
+const generateColorTerminal = (n) => `\x1b[${n}m%s\x1b[0m`;
 
 const COLORS = {
     Reset: generateColorTerminal(0),
@@ -36,12 +36,12 @@ const COLORS = {
     BgGray: generateColorTerminal(100),
 };
 
-const parseHTMLFunction = (HTML: string) => {
+const parseHTMLFunction = (HTML) => {
     const keyVar = 'GT_VAR_67629821984219841294706412';
 
     const HTMLFUNCTION = HTML.replaceAll('{{', `{{${keyVar}`);
 
-    const HTMLOBJKEYS: { [id: string]: string } = {};
+    const HTMLOBJKEYS = {};
 
     const HTMLFUNCTIONVAR = HTMLFUNCTION.split(/\{\{|\}\}/g).map((e) => {
         if (e.includes(keyVar)) {
@@ -52,7 +52,7 @@ const parseHTMLFunction = (HTML: string) => {
         return e;
     });
 
-    const HTMLKEYS: string[] = Object.values(HTMLOBJKEYS);
+    const HTMLKEYS = Object.values(HTMLOBJKEYS);
 
     return `export const getTemplateEmail = ({${HTMLKEYS.join(',')}}:{[id in "${HTMLKEYS.join('"|"')}"]:string}) => \`${HTMLFUNCTIONVAR.join('')}\`;`;
 };
@@ -63,7 +63,7 @@ export const generate = async () => {
 
     const FOLDER = './src/pages';
 
-    const pathList: string[] = listPaths(FOLDER, {
+    const pathList = listPaths(FOLDER, {
         includeFiles: true,
     }).filter(
         (e) => e.split('/').at(-1) == 'index.tsx' && e != FOLDER + '/index.tsx',
@@ -81,7 +81,7 @@ export const generate = async () => {
         const RUTE = PATH.resolve(process.cwd(), path);
 
         const RUTE_HTML = RUTE.replace('index.tsx', 'template.html');
-        const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.tsx');
+        const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.ts');
 
         console.log(
             COLORS.FgYellow,
