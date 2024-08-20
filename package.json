@@ -1,8 +1,8 @@
 {
   "name": "generate-template-email-nextjs-bun",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "",
-  "main": "src/index.tsx",
+  "main": "cjs/index.js",
   "type": "module",
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",
@@ -49,6 +49,6 @@
     "typescript": "^5"
   },
   "files": [
-    "src"
+    "cjs"
   ]
 }

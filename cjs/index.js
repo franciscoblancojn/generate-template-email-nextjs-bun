@@ -63,7 +63,7 @@ const generate = async () => {
         console.log(COLORS.FgGreen, `  (${i + 1}/${pathListN}) CREATE TEMPLATE FOR [${path}]`);
         const RUTE = path_1.default.resolve(process.cwd(), path);
         const RUTE_HTML = RUTE.replace('index.tsx', 'template.html');
-        const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.ts');
+        const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.js');
         console.log(COLORS.FgYellow, `\t(1/4)`, COLORS.FgMagenta, ` - IMPORT COMPONENT [${path}]`);
         const COMPONENT = await Promise.resolve(`${RUTE}`).then(s => tslib_1.__importStar(require(s)));
         console.log(COLORS.FgYellow, `\t(2/4)`, COLORS.FgMagenta, ` - CREATE HTML [${path}]`);

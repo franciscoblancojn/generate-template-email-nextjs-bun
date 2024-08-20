@@ -81,7 +81,7 @@ export const generate = async () => {
         const RUTE = PATH.resolve(process.cwd(), path);
 
         const RUTE_HTML = RUTE.replace('index.tsx', 'template.html');
-        const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.ts');
+        const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.js');
 
         console.log(
             COLORS.FgYellow,
