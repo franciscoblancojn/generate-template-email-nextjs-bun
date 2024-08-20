@@ -89,7 +89,7 @@ export const generate = async () => {
             COLORS.FgMagenta,
             ` - IMPORT COMPONENT [${path}]`,
         );
-        const COMPONENT = await import('.' + RUTE);
+        const COMPONENT = await import(RUTE);
 
         console.log(
             COLORS.FgYellow,
