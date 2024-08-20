@@ -4,7 +4,7 @@
   "description": "",
   "main": "cjs/index.js",
   "bin": {
-    "generate": "./cjs/bin/index.js"
+    "generate-template-email-nextjs-bun": "./cjs/bin/index.js"
   },
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",
