@@ -54,7 +54,7 @@ const parseHTMLFunction = (HTML) => {
 
     const HTMLKEYS = Object.values(HTMLOBJKEYS);
 
-    return `export const getTemplateEmail = ({${HTMLKEYS.join(',')}}:{[id in "${HTMLKEYS.join('"|"')}"]:string}) => \`${HTMLFUNCTIONVAR.join('')}\`;`;
+    return `const getTemplateEmail = ({${HTMLKEYS.join(',')}}) => \`${HTMLFUNCTIONVAR.join('')}\`; module.exports = {getTemplateEmail}`;
 };
 
 export const generate = async () => {

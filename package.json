@@ -4,9 +4,6 @@
   "description": "",
   "main": "src/index.tsx",
   "type": "module",
-  "bin": {
-    "generate-template-email-nextjs-bun": "./src/bin/index.js"
-  },
   "scripts": {
     "build": "npm run build:esm",
     "build:esm": "echo 'esm'",
