@@ -1,0 +1,19 @@
+{
+  "name": "generate-template-email-nextjs-bun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franciscoblancojn/generate-template-email-nextjs-bun.git"
+  },
+  "author": "franciscoblancojn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/franciscoblancojn/generate-template-email-nextjs-bun/issues"
+  },
+  "homepage": "https://github.com/franciscoblancojn/generate-template-email-nextjs-bun#readme"
+}
