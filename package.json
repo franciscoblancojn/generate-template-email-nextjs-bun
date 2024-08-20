@@ -2,9 +2,9 @@
   "name": "generate-template-email-nextjs-bun",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.tsx",
+  "main": "cjs/index.js",
   "bin": {
-    "generate": "./bin/index.tsx"
+    "generate": "./cjs/bin/index.js"
   },
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",
