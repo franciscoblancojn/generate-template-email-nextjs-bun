@@ -2,12 +2,12 @@
   "name": "generate-template-email-nextjs-bun",
   "version": "1.0.4",
   "description": "",
-  "main": "cjs/index.js",
+  "main": "src/index.tsx",
   "bin": {
-    "generate-template-email-nextjs-bun": "./cjs/bin/index.js"
+    "generate-template-email-nextjs-bun": "./src/bin/index.tsx"
   },
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "npm run build:esm",
     "build:esm": "echo 'esm'",
     "build:cjs": "tsc --module commonjs --outDir cjs",
     "lint": "npx eslint ./src",
@@ -49,5 +49,8 @@
     "ts-loader": "9.5.1",
     "tslib": "2.6.2",
     "typescript": "^5"
-  }
+  },
+  "files": [
+    "src"
+  ]
 }
