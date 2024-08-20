@@ -5,7 +5,7 @@
   "main": "src/index.tsx",
   "type": "module",
   "scripts": {
-    "build": "npm run build:esm",
+    "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "echo 'esm'",
     "build:cjs": "tsc --module commonjs --outDir cjs",
     "lint": "npx eslint ./src",
