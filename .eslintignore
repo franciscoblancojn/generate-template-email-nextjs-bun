@@ -1,0 +1,11 @@
+.next
+
+/dist
+/coverage
+styles.css
+
+src/lib/adapters/*
+src/lib/data/state.tsx
+src/lib/data/city.tsx
+
+src/lib/functions/csvToJson.tsx

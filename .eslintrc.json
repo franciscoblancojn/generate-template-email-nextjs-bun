@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "ignorePatterns": ["csv.tsx"],
+  "rules": {
+    "no-console": "off",
+    "react/no-unescaped-entities": "error",
+    "@next/next/google-font-display": "off",
+    "@next/next/google-font-preconnect": "off",
+    "@next/next/inline-script-id": "off",
+    "@next/next/no-img-element": "off",
+    "@next/next/no-typos": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-empty-interface":"off",
+    "no-empty-pattern":"off",
+    "jsx-a11y/alt-text":"off",
+    "import/no-anonymous-default-export":"error",
+    "react-hooks/exhaustive-deps":"off",
+    "@typescript-eslint/no-var-requires":"off"
+  }
+}

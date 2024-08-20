@@ -2,9 +2,20 @@
   "name": "generate-template-email-nextjs-bun",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.tsx",
+  "bin": {
+    "generate": "./bin/index.tsx"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "echo 'esm'",
+    "build:cjs": "tsc --module commonjs --outDir cjs",
+    "lint": "npx eslint ./src",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier ./src --check",
+    "prettier:fix": "npm run prettier -- --write",
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "flb": "npm run format && npm run lint && npm run build"
   },
   "repository": {
     "type": "git",
@@ -15,5 +26,26 @@
   "bugs": {
     "url": "https://github.com/franciscoblancojn/generate-template-email-nextjs-bun/issues"
   },
-  "homepage": "https://github.com/franciscoblancojn/generate-template-email-nextjs-bun#readme"
+  "homepage": "https://github.com/franciscoblancojn/generate-template-email-nextjs-bun#readme",
+  "dependencies": {
+    "bun": "^1.1.24",
+    "commander": "^12.1.0",
+    "next": "14.1.3",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "7.5.0",
+    "@typescript-eslint/parser": "7.5.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.3",
+    "npm-check-updates": "16.14.18",
+    "prettier": "3.2.5",
+    "ts-loader": "9.5.1",
+    "tslib": "2.6.2",
+    "typescript": "^5"
+  }
 }

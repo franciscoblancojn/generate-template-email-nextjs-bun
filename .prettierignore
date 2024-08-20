@@ -1,0 +1,21 @@
+# Add files here to ignore them from prettier formatting
+
+/dist
+/coverage
+index.css
+
+src/lib/adapters/*
+src/lib/data/state.tsx
+src/lib/data/city.tsx
+
+src/lib/functions/csvToJson.tsx
+
+lottie.tsx
+
+**/*.stories.tsx
+
+
+
+*.css
+*.css.map
+**/*.stories.tsx
