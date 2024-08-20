@@ -1,6 +1,6 @@
 {
   "name": "generate-template-email-nextjs-bun",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "src/index.tsx",
   "type": "module",
