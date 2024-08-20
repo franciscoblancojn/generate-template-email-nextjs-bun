@@ -2,9 +2,8 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import write from 'write';
 import listPaths from 'list-paths';
-import PATH from 'path';
 
-const generateColorTerminal = (n) => `\x1b[${n}m%s\x1b[0m`;
+const generateColorTerminal = (n: number) => `\x1b[${n}m%s\x1b[0m`;
 
 const COLORS = {
     Reset: generateColorTerminal(0),
@@ -36,12 +35,12 @@ const COLORS = {
     BgGray: generateColorTerminal(100),
 };
 
-const parseHTMLFunction = (HTML) => {
+const parseHTMLFunction = (HTML: string) => {
     const keyVar = 'GT_VAR_67629821984219841294706412';
 
     const HTMLFUNCTION = HTML.replaceAll('{{', `{{${keyVar}`);
 
-    const HTMLOBJKEYS = {};
+    const HTMLOBJKEYS: { [id: string]: string } = {};
 
     const HTMLFUNCTIONVAR = HTMLFUNCTION.split(/\{\{|\}\}/g).map((e) => {
         if (e.includes(keyVar)) {
@@ -52,18 +51,18 @@ const parseHTMLFunction = (HTML) => {
         return e;
     });
 
-    const HTMLKEYS = Object.values(HTMLOBJKEYS);
+    const HTMLKEYS: string[] = Object.values(HTMLOBJKEYS);
 
-    return `const getTemplateEmail = ({${HTMLKEYS.join(',')}}) => \`${HTMLFUNCTIONVAR.join('')}\`; module.exports = {getTemplateEmail}`;
+    return `export const getTemplateEmail = ({${HTMLKEYS.join(',')}}:{[id in "${HTMLKEYS.join('"|"')}"]:string}) => \`${HTMLFUNCTIONVAR.join('')}\`;`;
 };
 
-const generate = async () => {
+const main = async () => {
     console.log(COLORS.BgGreen, '------ INIT GENERATE -----');
     console.log('');
 
     const FOLDER = './src/pages';
 
-    const pathList = listPaths(FOLDER, {
+    const pathList: string[] = listPaths(FOLDER, {
         includeFiles: true,
     }).filter(
         (e) => e.split('/').at(-1) == 'index.tsx' && e != FOLDER + '/index.tsx',
@@ -78,10 +77,10 @@ const generate = async () => {
             `  (${i + 1}/${pathListN}) CREATE TEMPLATE FOR [${path}]`,
         );
 
-        const RUTE = PATH.resolve(process.cwd(), path);
+        const RUTE = `${path}`;
 
         const RUTE_HTML = RUTE.replace('index.tsx', 'template.html');
-        const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.js');
+        const RUTE_FUNCTION = RUTE.replace('index.tsx', 'function.tsx');
 
         console.log(
             COLORS.FgYellow,
@@ -89,7 +88,7 @@ const generate = async () => {
             COLORS.FgMagenta,
             ` - IMPORT COMPONENT [${path}]`,
         );
-        const COMPONENT = await import(RUTE);
+        const COMPONENT = await import('.' + RUTE);
 
         console.log(
             COLORS.FgYellow,
@@ -132,5 +131,4 @@ const generate = async () => {
 
     console.log(COLORS.BgGreen, '------ FINISH GENERATE -----');
 };
-
-generate();
+main();
