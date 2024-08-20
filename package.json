@@ -1,11 +1,11 @@
 {
   "name": "generate-template-email-nextjs-bun",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "src/index.tsx",
   "type": "module",
   "bin": {
-    "generate-template-email-nextjs-bun": "./src/bin/index.tsx"
+    "generate-template-email-nextjs-bun": "./src/lib/index.tsx"
   },
   "scripts": {
     "build": "npm run build:esm",
