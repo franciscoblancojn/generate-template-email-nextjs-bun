@@ -57,7 +57,7 @@ const parseHTMLFunction = (HTML) => {
     return `const getTemplateEmail = ({${HTMLKEYS.join(',')}}) => \`${HTMLFUNCTIONVAR.join('')}\`; module.exports = {getTemplateEmail}`;
 };
 
-export const generate = async () => {
+const generate = async () => {
     console.log(COLORS.BgGreen, '------ INIT GENERATE -----');
     console.log('');
 
@@ -132,3 +132,5 @@ export const generate = async () => {
 
     console.log(COLORS.BgGreen, '------ FINISH GENERATE -----');
 };
+
+generate();

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generate = void 0;
 const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importDefault(require("react"));
 const server_1 = require("react-dom/server");
@@ -82,5 +81,5 @@ const generate = async () => {
     }
     console.log(COLORS.BgGreen, '------ FINISH GENERATE -----');
 };
-exports.generate = generate;
+generate();
 //# sourceMappingURL=index.js.map
