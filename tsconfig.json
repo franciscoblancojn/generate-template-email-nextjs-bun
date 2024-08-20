@@ -32,6 +32,9 @@
       "experimentalDecorators": true,
       "removeComments": false,
       "noImplicitAny": false,
-      "isolatedModules": true
+      "isolatedModules": true,
+      "types": [
+          "bun-types"
+      ]
   }
 }

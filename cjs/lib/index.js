@@ -4,8 +4,6 @@ exports.generate = void 0;
 const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importDefault(require("react"));
 const server_1 = require("react-dom/server");
-// eslint-disable-next-line
-// @ts-expect-error
 const bun_1 = tslib_1.__importDefault(require("bun"));
 const generateColorTerminal = (n) => `\x1b[${n}m%s\x1b[0m`;
 const COLORS = {
@@ -74,11 +72,11 @@ const generate = async () => {
             react_1.default.createElement(COMPONENT.default, null)));
         console.log(COLORS.FgYellow, `\t(3/4)`, COLORS.FgMagenta, ` - CREATE TEMPLATE [${path}]`);
         await bun_1.default.write(RUTE_HTML, `${HTML}`, {
-            createDirs: true,
+            createPath: true,
         });
         console.log(COLORS.FgYellow, `\t(4/4)`, COLORS.FgMagenta, ` - CREATE FUNCTION [${path}]`);
         await bun_1.default.write(RUTE_FUNCTION, parseHTMLFunction(HTML), {
-            createDirs: true,
+            createPath: true,
         });
         console.log(COLORS.FgCyan, `  (${i + 1}/${pathListN}) FINISH CREATE TEMPLATE FOR [${path}]`);
         console.log('');

@@ -1,7 +1,5 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-// eslint-disable-next-line
-// @ts-expect-error
 import Bun from 'bun';
 
 const generateColorTerminal = (n: number) => `\x1b[${n}m%s\x1b[0m`;
@@ -112,7 +110,7 @@ export const generate = async () => {
             ` - CREATE TEMPLATE [${path}]`,
         );
         await Bun.write(RUTE_HTML, `${HTML}`, {
-            createDirs: true,
+            createPath: true,
         });
 
         console.log(
@@ -122,7 +120,7 @@ export const generate = async () => {
             ` - CREATE FUNCTION [${path}]`,
         );
         await Bun.write(RUTE_FUNCTION, parseHTMLFunction(HTML), {
-            createDirs: true,
+            createPath: true,
         });
 
         console.log(
